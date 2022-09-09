@@ -1,0 +1,1 @@
+const {add,update,find,remove}=require("./payment.service");

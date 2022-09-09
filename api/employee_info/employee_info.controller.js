@@ -1,0 +1,1 @@
+const {add,update,find,remove}=require("./employee_info.service");
