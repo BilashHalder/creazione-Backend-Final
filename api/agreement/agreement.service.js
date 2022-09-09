@@ -25,7 +25,13 @@ const find = (agreement_id, callBack) => {
         return callBack(null,result);
     });
 }
-
+const findall = (agreement_id, callBack) => {
+    dbcon.query('SELECT * FROM agreement', [], (err, result, fields) => {
+        if(err)
+        return callBack(err);
+        return callBack(null,result);
+    });
+}
 const remove = (agreement_id, callBack) => {
     dbcon.query('DELETE FROM agreement WHERE agreement_id=?', [agreement_id], (err, result, fields) => {
         if(err)
@@ -33,4 +39,4 @@ const remove = (agreement_id, callBack) => {
         return callBack(null,result);
     });
 }
-module.exports={add,update,find,remove}
+module.exports={add,update,find,findall,remove}

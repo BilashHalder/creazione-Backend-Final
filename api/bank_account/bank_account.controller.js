@@ -1,4 +1,4 @@
-const { add, update, find, remove } = require("./bank_account.service");
+const { add, update, find,findall, remove } = require("./bank_account.service");
 
 
 const Find_=(request,response)=>{

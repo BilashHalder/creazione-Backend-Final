@@ -1,4 +1,4 @@
-const { add, update, find, remove } = require("./associate.service");
+const { add, update, find,findall, remove } = require("./associate.service");
 
 
 const Find_=(request,response)=>{
