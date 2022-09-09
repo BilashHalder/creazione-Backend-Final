@@ -1,17 +1,44 @@
 require('dotenv').config();
-/////////////////////////////////////////
 const express=require("express");
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
 
-////////////////////////////////////////
+
+
+
 const app=express();
 
+/**************************************
+ * import all routes
+ *****************************************/
+const AgreementRouter=require("./api/agreement/agreement.route");
 
 
-/////////////////All Middlewares/////////////////////////
 
 
-////////////////////All Routes/////////////////////////
 
+
+
+
+
+
+
+/***********************************
+ *       All Middlewares
+ **********************************/
+ app.use(cors());
+ app.use(express.json());
+ app.use(fileUpload());
+
+
+
+
+
+
+////////////////////All Routes(localhost:5000/api/) base url
+//domain:port/api/dbname
+/////////////////////////
+app.use("/api/agreement",AgreementRouter);
 
 
 
@@ -39,6 +66,6 @@ const app=express();
 
 
 /*Server Initilization */
-     app.listen(process.env.APP_PORT,()=>{
-        console.log(`Api Server Running on Port No : ${process.env.APP_PORT}`);
+     app.listen(5000,()=>{
+        console.log(`Api Server Running on Port No : 5000`);
     });

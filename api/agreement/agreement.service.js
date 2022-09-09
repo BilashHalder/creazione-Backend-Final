@@ -2,32 +2,32 @@ const dbcon = require("../../config/mysql_db_config");
 
 
 
-const add = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+const add = (file_url, callBack) => {
+    dbcon.query('INSERT INTO agreement (file_url) VALUES (?)', [file_url], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
     });
 }
 
-const update = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+const update = (agreement, callBack) => {
+    dbcon.query('UPDATE agreement SET upload_on=CURRENT_TIMESTAMP,file_url=? WHERE agreement_id=?', [agreement.agreement_id,agreement.file_url], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
     });
 }
 
-const find = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+const find = (agreement_id, callBack) => {
+    dbcon.query('SELECT * FROM agreement WHERE agreement_id=?', [agreement_id], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
     });
 }
 
-const remove = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+const remove = (agreement_id, callBack) => {
+    dbcon.query('DELETE FROM agreement WHERE agreement_id=?', [agreement_id], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
