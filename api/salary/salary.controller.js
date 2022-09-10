@@ -1,4 +1,4 @@
-const { add, update, find, remove } = require("./salary.service");
+const { add, update, find,findall, remove } = require("./salary.service");
 
 const Find_=(request,response)=>{
     response.send("find")

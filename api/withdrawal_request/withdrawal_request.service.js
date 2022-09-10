@@ -2,35 +2,45 @@ const dbcon = require("../../config/mysql_db_config");
 
 
 
-const add = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+const add = (withdraw_request, callBack) => {
+    const{user_id,user_type,account_no,ammount,request_time,status}=withdraw_request;
+    dbcon.query('INSERT INTO withdraw_request(user_id,user_type,account_no,ammount,request_time,status) VALUES (?,?,?,?,?,?)', [user_id,user_type,account_no,ammount,request_time,status], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
     });
 }
 
-const update = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+const update = (withdraw_request, callBack) => {
+const{user_id,user_type,account_no,ammount,request_time,status,id}=withdraw_request;
+    dbcon.query('UPDATE withdraw_request SET user_id=?,user_type=?,account_no=?,ammount=?,request_time=?,status=? WHERE id=?', [user_id,user_type,account_no,ammount,request_time,status,id], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
     });
 }
 
-const find = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+const find = (id, callBack) => {
+    dbcon.query('SELECT * FROM withdraw_request WHERE id=?', [id], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
     });
 }
 
-const remove = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+const findall = (data, callBack) => {
+    dbcon.query('SELECT * FROM withdraw_request', [], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
     });
 }
-module.exports={add,update,find,remove}
+
+const remove = (id, callBack) => {
+    dbcon.query('DELETE FROM withdraw_request WHERE id', [id], (err, result, fields) => {
+        if(err)
+        return callBack(err);
+        return callBack(null,result);
+    });
+}
+module.exports={add,update,find,findall,remove}
