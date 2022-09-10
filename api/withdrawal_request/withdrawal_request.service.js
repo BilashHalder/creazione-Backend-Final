@@ -7,7 +7,14 @@ const add = (withdraw_request, callBack) => {
     dbcon.query('INSERT INTO withdraw_request(user_id,user_type,account_no,ammount,request_time,status) VALUES (?,?,?,?,?,?)', [user_id,user_type,account_no,ammount,request_time,status], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 

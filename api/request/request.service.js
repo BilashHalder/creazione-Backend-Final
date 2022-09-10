@@ -8,7 +8,14 @@ const add = (request, callBack) => {
     dbcon.query('INSERT INTO request(requset_type, customer_id, request_date, comments, status) VALUES (?,?,?,?.?)', [], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 

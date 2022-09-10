@@ -2,16 +2,24 @@ const dbcon = require("../../config/mysql_db_config");
 
 
 
-const add = (file_url, callBack) => {
-    dbcon.query('INSERT INTO agreement (file_url) VALUES (?)', [file_url], (err, result, fields) => {
+const add = (agreement, callBack) => {
+    const{invesment_id,file_url}=agreement;
+    dbcon.query('INSERT INTO agreement (invesment_id,file_url) VALUES (?,?)', [invesment_id,file_url], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 
 const update = (agreement, callBack) => {
-    dbcon.query('UPDATE agreement SET upload_on=CURRENT_TIMESTAMP,file_url=? WHERE agreement_id=?', [agreement.agreement_id,agreement.file_url], (err, result, fields) => {
+    dbcon.query('UPDATE agreement SET upload_on=CURRENT_TIMESTAMP,invesment_id=?,file_url=? WHERE agreement_id=?', [agreement.agreement_id,agreement.invesment_id,agreement.file_url], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);

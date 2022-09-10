@@ -7,7 +7,14 @@ const add = (investment, callBack) => {
     dbcon.query('INSERT INTO investment(ammount,date_time,roi,nominee_id,account_no,payment_id,agreement_id,status) VALUES (?,?,?,?,?,?,?,?,?)', [ammount, date_time, roi, nominee_id, account_no, payment_id, agreement_id, status], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 

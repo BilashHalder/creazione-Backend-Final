@@ -1,5 +1,5 @@
 const router=require("express").Router();
-const {Find_,FindAll_,Add_,Update_,Remove_}=require('./associate.service');
+const {Find_,FindAll_,Add_,Update_,Remove_}=require('./associate.controller');
 
 
 /*******************************************

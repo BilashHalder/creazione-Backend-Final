@@ -7,7 +7,14 @@ const add = (payment, callBack) => {
     dbcon.query('INSERT INTO payment( transaction_time, purpose, payment_mode, to_account, ammount, status, transaction_id) VALUES (?,?,?,?,?,?,?)', [ transaction_time, purpose, payment_mode, to_account, ammount, status, transaction_id], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 

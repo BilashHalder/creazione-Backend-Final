@@ -7,7 +7,14 @@ const add = (nominee, callBack) => {
     dbcon.query('INSERT INTO nominee(name, dob, user_id, user_type, status) VALUES (?,?,?,?,?)', [name, dob, user_id, user_type, status], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 

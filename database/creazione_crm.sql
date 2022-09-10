@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 09, 2022 at 07:58 AM
+-- Generation Time: Sep 10, 2022 at 12:33 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -30,11 +30,25 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `agreement`;
 CREATE TABLE IF NOT EXISTS `agreement` (
   `agreement_id` int(11) NOT NULL AUTO_INCREMENT,
-  `printed_on` datetime NOT NULL,
-  `upload_on` datetime NOT NULL,
+  `invesment_id` int(11) NOT NULL,
+  `upload_on` datetime DEFAULT CURRENT_TIMESTAMP,
   `file_url` varchar(100) NOT NULL,
   PRIMARY KEY (`agreement_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `agreement`
+--
+
+INSERT INTO `agreement` (`agreement_id`, `invesment_id`, `upload_on`, `file_url`) VALUES
+(1, 0, NULL, 'TestFile.pdf'),
+(2, 1, '2022-09-10 13:13:53', '8c3df6dd5373fb7f76ac36217f6507e3#_#1662795833026.pdf'),
+(3, 1, '2022-09-10 13:14:08', '8c3df6dd5373fb7f76ac36217f6507e3#_#1662795848633.pdf'),
+(4, 1, '2022-09-10 13:20:50', '8c3df6dd5373fb7f76ac36217f6507e3#_#1662796250225.pdf'),
+(5, 17, '2022-09-10 13:21:00', '8c3df6dd5373fb7f76ac36217f6507e3#_#1662796260283.pdf'),
+(6, 17, '2022-09-10 13:23:59', '8c3df6dd5373fb7f76ac36217f6507e3#_#1662796439838.pdf'),
+(7, 17, '2022-09-10 13:24:54', '8c3df6dd5373fb7f76ac36217f6507e3#_#1662796494888.pdf'),
+(8, 70, '2022-09-10 13:25:38', '8c3df6dd5373fb7f76ac36217f6507e3#_#1662796538566.pdf');
 
 -- --------------------------------------------------------
 
@@ -49,19 +63,20 @@ CREATE TABLE IF NOT EXISTS `associate` (
   `gender` tinyint(4) NOT NULL COMMENT '0-male 1-female 2-others',
   `email` varchar(80) NOT NULL,
   `phone` varchar(15) NOT NULL,
-  `document_id` int(11) NOT NULL,
+  `document_id` int(11) DEFAULT NULL,
   `pass` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '1-active 0-not active',
   PRIMARY KEY (`associate_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `associate`
 --
 
 INSERT INTO `associate` (`associate_id`, `name`, `gender`, `email`, `phone`, `document_id`, `pass`, `image`, `status`) VALUES
-(1, 'Associate New', 0, 'associate@gmail.com', '9876543210', 1, 'hqwgdjwqhgdjqwhgdjgdvajhasjdhfsadasfjdashdjafhd', '', 1);
+(1, 'Associate New', 0, 'associate@gmail.com', '9876543210', 1, 'hqwgdjwqhgdjqwhgdjgdvajhasjdhfsadasfjdashdjafhd', '', 1),
+(2, 'Associate user', 1, 'associate@gmail.com', '9898989898', NULL, '$2b$10$aeN..nJ86m5nweheAq.JjOnHPkshNGUvyeIGlkiLBRjKy9JbJBEf.', '7af91f951b43200c0786517742caf90e#_#1662811037921.jpg', 1);
 
 -- --------------------------------------------------------
 

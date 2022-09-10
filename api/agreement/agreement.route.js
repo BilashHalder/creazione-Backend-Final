@@ -9,7 +9,7 @@ const {Find_,FindAll_,Add_,Update_,Remove_}=require('./agreement.controller');
  router.get("/:id",Find_);
  router.get("/",FindAll_);
  router.post("/",Add_);
- router.put("/",Update_);
+ router.put("/:id",Update_);
  router.delete("/:id",Remove_);
 
   /*To handle all invalid request */  

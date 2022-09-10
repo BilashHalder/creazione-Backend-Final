@@ -29,8 +29,7 @@ const find = (account_no, callBack) => {
 }
 
 const findall = (bankAccount, callBack) => {
-    const {user_id,user_type}=bankAccount;
-    dbcon.query('SELECT * FROM bank_account WHERE user_id= AND user_type=', [user_id,user_type], (err, result, fields) => {
+    dbcon.query('SELECT * FROM bank_account ', [], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);

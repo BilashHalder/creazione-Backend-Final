@@ -7,7 +7,14 @@ const add = (qualifiaction, callBack) => {
     dbcon.query('INSERT INTO qualification(degree_name, year_of_pass, degree_from,marks,document_url, employee_id) VALUES (?,?,?,?,?,?)', [degree_name, year_of_pass, degree_from,marks,document_url, employee_id], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 

@@ -1,5 +1,5 @@
 const router=require("express").Router();
-const {Find_,FindAll_,Add_,Update_,Remove_}=require('.');
+const {Find_,FindAll_,Add_,Update_,Remove_}=require('./employee.controller');
 
 
 /*******************************************

@@ -7,7 +7,14 @@ const add = (work_report, callBack) => {
     dbcon.query('INSERT INTO work_report(employee_id, report_date, start_time, submit_time, report, document_url, status) VALUES (?,?,?,?,?,?,?)', [employee_id, report_date, start_time, submit_time, report, document_url, status], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 

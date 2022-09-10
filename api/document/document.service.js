@@ -5,7 +5,14 @@ const {adhar_no,pan_no,address,adhar_verified,pan_verified}=document;
     dbcon.query('INSERT INTO document(adhar_no,pan_no,address,adhar_verified,pan_verified) VALUES (?,?,?,?,?)', [], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 

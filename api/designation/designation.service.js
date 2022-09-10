@@ -7,7 +7,14 @@ const add = (designation, callBack) => {
     dbcon.query('INSERT INTO designation(title) VALUES (?)', [title], (err, result, fields) => {
         if(err)
         return callBack(err);
-        return callBack(null,result);
+        else{
+            find(result.insertId,(err,res)=>{
+                if(err)
+                return callBack(err);
+                else
+                return callBack(null,res);
+            })
+        }
     });
 }
 
